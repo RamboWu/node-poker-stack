@@ -39,7 +39,7 @@ app.configure('production|development', function(){
 app.configure('production|development', 'game', function(){
     app.filter(abuseFilter());
     app.load(tableComponent);
-    app.load(botComponent);
+    //app.load(botComponent);
 //    app.load(stateComponent);
 });
 

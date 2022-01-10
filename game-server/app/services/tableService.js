@@ -58,6 +58,8 @@ TableService.prototype.getTables = function(){
             minPlayers : table.table.minPlayers,
             maxPlayers : table.table.maxPlayers,
             gameMode   : table.table.gameMode,
+            totalTime  : table.table.totalTime,
+            expireTime : table.table.expireTime,
             players    : players,
             members    : members
         });
@@ -93,8 +95,9 @@ TableService.prototype.createTable = function(uid, obj, cb){
     obj.maxBuyIn = Math.round(parseInt(obj.maxBuyIn));
     obj.minPlayers = Math.round(parseInt(obj.minPlayers));
     obj.maxPlayers = Math.round(parseInt(obj.maxPlayers));
+    obj.totalTime = Math.round(parseInt(obj.totalTime));
     obj.gameMode = (obj.gameMode == 'normal' || obj.gameMode == 'fast') ? obj.gameMode : 'normal';
-    this.tables[tid].table = new Table(obj.smallBlind, obj.bigBlind, obj.minPlayers, obj.maxPlayers, obj.minBuyIn, obj.maxBuyIn, obj.gameMode, this.tables[tid]);
+    this.tables[tid].table = new Table(obj.smallBlind, obj.bigBlind, obj.minPlayers, obj.maxPlayers, obj.minBuyIn, obj.maxBuyIn, obj.gameMode, obj.totalTime, this.tables[tid]);
     // automatically join created table
 //        session.set('tid', table.id);
 //        var tid = session.get('tid');
@@ -277,6 +280,8 @@ TableService.prototype.getTableJSON = function(tid, uid){
         minBuyIn        : table.table.minBuyIn,
         maxBuyIn        : table.table.maxBuyIn,
         gameMode        : table.table.gameMode,
+        totalTime       : table.table.totalTime,
+        expireTime      : table.table.expireTime,
         players         : this.getPlayersJSON(tid, 'players', uid),
         playersToRemove : this.getPlayersJSON(tid, 'playersToRemove', uid),
         playersToAdd    : this.getPlayersJSON(tid, 'playersToAdd', uid),

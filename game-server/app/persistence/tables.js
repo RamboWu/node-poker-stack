@@ -17,6 +17,8 @@ var TableStore = module.exports = {
             minPlayers  : obj.minPlayers,
             maxPlayers  : obj.maxPlayers,
             gameMode    : obj.gameMode,
+            totalTime   : obj.totalTime,
+            expireTime  : obj.expireTime,
             board       : obj.board,
             creator     : obj.creator,
             players     : obj.players || [],

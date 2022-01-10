@@ -17,7 +17,7 @@ var GAME_SETTINGS = require('../../config/gameSettings.json');
  * @param {object} table instance of a table
  *
  */
-module.exports = Table = function(smallBlind, bigBlind, minPlayers, maxPlayers, minBuyIn, maxBuyIn, gameMode, table){
+module.exports = Table = function(smallBlind, bigBlind, minPlayers, maxPlayers, minBuyIn, maxBuyIn, gameMode, totalTime, table){
     this.smallBlind = smallBlind;
     this.bigBlind = bigBlind;
     this.minPlayers = minPlayers;
@@ -37,6 +37,9 @@ module.exports = Table = function(smallBlind, bigBlind, minPlayers, maxPlayers, 
     this.members = [];
     this.active = false;
     this.gameMode = gameMode;
+    this.totalTime = totalTime;
+    //时间太久，这个房间也会被删除
+    this.expireTime = Date.now() + 3*60*60*1000;
     this.instance = table;
     //Validate acceptable value ranges.
     var err;
@@ -52,9 +55,14 @@ module.exports = Table = function(smallBlind, bigBlind, minPlayers, maxPlayers, 
     }
 }
 
+Table.prototype.IsTableExpired = function(){
+    var now = Date.now();
+    return (now > this.expireTime);
+}
+
 Table.prototype.initNewGame = function(){
     var i;
-    this.instance.state = 'JOIN';
+    //this.instance.state = 'JOIN';
     this.dealer += 1;
     if(this.dealer >= this.players.length){
         this.dealer = 0;
@@ -77,6 +85,7 @@ Table.prototype.initNewGame = function(){
 Table.prototype.StartGame = function(){
     //If there is no current game and we have enough players, start a new game.
     this.instance.state = 'IN_PROGRESS';
+    this.expireTime = Date.now() + this.totalTime*60*1000;
     this.active = true;
     if(!this.game){
         this.game = new Game(this.smallBlind, this.bigBlind);
