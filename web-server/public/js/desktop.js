@@ -5,7 +5,6 @@ requirejs.config({
         "underscore"        : "libs/underscore",
         "backbone"          : "libs/backbone-min",
         "bootstrap"         : "libs/bootstrap.min",
-        "pomeloclient"      : "libs/pomeloclient",
         "socketio"          : "libs/socket.io",
         "resources"         : 'libs/resources'
 
@@ -15,7 +14,7 @@ requirejs.config({
             "deps"    : ["jquery"]
         },
         "backbone" : {
-            deps : ['bootstrap', 'pomeloclient', 'socketio']
+            deps : ['bootstrap',  'socketio']
         }
     }
 });
