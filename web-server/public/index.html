@@ -294,6 +294,17 @@
 <script id="newTableTmpl" type="text/template">
     <form class="row-fluid">
         <div class="form-group col-xs-6">
+            <label>Minimum Players</label>
+            <select class="form-control" name="totalTime">
+                <option value="15">15分钟</option>
+                <option value="30">30分钟</option>
+                <option value="45">45分钟</option>
+                <option value="60" selected="selected">60分钟</option>
+                <option value="90">90分钟</option>
+                <option value="120">120分钟</option>
+            </select>
+        </div>
+        <div class="form-group col-xs-6">
             <label>Small Blind</label>
             <input type="text" class="form-control" name="smallBlind" placeholder="Small Blind" value="50" />
         </div>
@@ -337,11 +348,11 @@
                 <option value="10" selected="selected">10</option>
             </select>
         </div>
-        <div class="form-group col-xs-12">
+        <div class="form-group col-xs-6">
             <label>Game Mode</label>
             <select class="form-control" name="gameMode">
-                <option value="normal">Normal (30 second hand)</option>
-                <option value="fast">Fast (15 second hand)</option>
+                <option value="normal">Normal (30 second)</option>
+                <option value="fast" selected="selected">Fast (15 second)</option>
             </select>
         </div>
         <div class="form-group col-xs-12">

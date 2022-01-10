@@ -73,6 +73,7 @@ TableService.prototype.createTable = function(uid, obj, cb){
             isNaN(obj.maxBuyIn)   ||
             isNaN(obj.minPlayers) ||
             isNaN(obj.maxPlayers) ||
+            isNaN(obj.totalTime) ||
             obj.minPlayers < 2    ||
             obj.minPlayers > 10   ||
             obj.maxPlayers < 2    ||
