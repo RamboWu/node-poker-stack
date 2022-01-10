@@ -9,6 +9,27 @@ var ChatService = require('./app/services/chatService');
 var app = pomelo.createApp();
 app.set('name', 'poker-game-stack');
 
+
+// app configuration
+app.configure('production|development', 'connector', function(){
+	app.set('connectorConfig',
+		{
+			connector : pomelo.connectors.hybridconnector,
+			heartbeat : 3,
+			useDict : true,
+			useProtobuf : true
+		});
+});
+
+app.configure('production|development', 'gate', function(){
+	app.set('connectorConfig',
+		{
+			connector : pomelo.connectors.hybridconnector,
+            useDict : true,
+			useProtobuf : true
+		});
+});
+
 app.configure('production|development', function(){
 	app.route('game', routeUtil.game);
 	app.filter(pomelo.timeout());
