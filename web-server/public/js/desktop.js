@@ -6,7 +6,7 @@ requirejs.config({
         "backbone"          : "libs/backbone-min",
         "bootstrap"         : "libs/bootstrap.min",
         "pomeloclient"      : "libs/pomeloclient",
-        "socketio"          : "/socket.io/socket.io.js",
+        "socketio"          : "libs/socket.io",
         "resources"         : 'libs/resources'
 
     },
